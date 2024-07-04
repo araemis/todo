@@ -1,0 +1,116 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+form input[type="text"],
+form select {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+form button {
+  padding: 10px;
+  background-color: #5cb85c;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #4cae4c;
+}
+
+ul.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+ul.todo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+ul.todo-list li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+ul.todo-list li label {
+  flex-grow: 1;
+}
+
+ul.todo-list li .delete-btn {
+  background-color: #ff6b6b;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+ul.todo-list li .delete-btn:hover {
+  background-color: #ff4c4c;
+
+}
+.checkbox-close-task:checked + .close-task{
+  text-decoration: line-through;
+}
+
+select:HARD {
+  background-color: #ff4000;
+}
+.close-task.HARD {
+  background-color: #ff4000;
+}
+.close-task.AVERAGE {
+  background-color: #ffff70;
+}
+.close-task.EASY {
+  background-color: #60FFC3;
+}
+
+.page-container {
+  text-align: center; /* Center-align the contents horizontally */
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+.page {
+  margin:3px; /* Add space between the buttons */
+}
+
+.clean-all{
+  right: 0;
+}
