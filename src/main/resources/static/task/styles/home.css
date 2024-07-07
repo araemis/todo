@@ -14,7 +14,6 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 350px;
 }
 
 h1 {
@@ -83,13 +82,12 @@ ul.todo-list li .delete-btn {
 
 ul.todo-list li .delete-btn:hover {
   background-color: #ff4c4c;
-
 }
-.checkbox-close-task:checked + .close-task{
+.checkbox-close-task:checked + .close-task {
   text-decoration: line-through;
 }
 
-select:HARD {
+select:hard {
   background-color: #ff4000;
 }
 .close-task.HARD {
@@ -99,7 +97,7 @@ select:HARD {
   background-color: #ffff70;
 }
 .close-task.EASY {
-  background-color: #60FFC3;
+  background-color: #60ffc3;
 }
 
 .page-container {
@@ -108,9 +106,9 @@ select:HARD {
 }
 
 .page {
-  margin:3px; /* Add space between the buttons */
+  margin: 3px; /* Add space between the buttons */
 }
 
-.clean-all{
+.clean-all {
   right: 0;
 }

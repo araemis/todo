@@ -1,0 +1,33 @@
+<!doctype html>
+<ul
+  id="testaqui"
+  th:fragment="tasks"
+  style="overflow: scroll; height: 300px"
+  class="todo-list"
+  hx-swap-oob="true"
+>
+  <li th:each="task :${tasks}">
+    <input
+      class="checkbox-close-task"
+      type="checkbox"
+      th:hx-put="@{/updateTask/{id}(id=${task.id})}"
+      hx-trigger="click"
+      hx-target="#testaqui"
+      th:id="|task-${task.id}|"
+      th:checked="${task.isComplete}"
+      hx-include="[id=type-difficult], [id=type-checked]"
+    />
+    <label th:class="|close-task ${task.difficult}|" th:for="|task-${task.id}|">
+      [[${task.title}]]
+    </label>
+    <button
+      class="delete-btn"
+      th:hx-delete="@{/deleteTask/{id}(id=${task.id})}"
+      hx-trigger="click"
+      hx-target="#testaqui"
+      hx-include="[id=type-difficult], [id=type-checked]"
+    >
+      Delete
+    </button>
+  </li>
+</ul>

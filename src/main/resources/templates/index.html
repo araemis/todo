@@ -13,14 +13,9 @@
   </head>
 
   <body>
-    <div id="container" class="container" hx-swap-oob="true">
+    <div id="container" class="container" hx-swap-oob="true" style="width: 600px">
       <h1>TO DO LIST</h1>
-      <form
-        th:action="@{/addTask}"
-        th:hx-post="@{/addTask}"
-        method="post"
-        hx-target="#container"
-      >
+      <form action="/addTask" method="post">
         <input
           autofocus
           type="text"
@@ -30,7 +25,7 @@
           required
           maxlength="30"
         />
-        <select name="difficult">
+        <select id="difficult" name="difficult">
           <option value="NONE">None</option>
           <option style="background-color: #60ffc3" value="EASY">Easy</option>
           <option style="background-color: #ffff70" value="AVERAGE">
@@ -40,68 +35,43 @@
         </select>
         <button type="submit">Add</button>
       </form>
-      <!-- <select id="type-difficult" hx-trigger="change" hx-target="#container" th:hx-get="@{/filter}" -->
-      <!--   hx-include="#type-difficult"> -->
-      <!--   <option value="NONE">None</option> -->
-      <!--   <option value="EASY">Easy</option> -->
-      <!--   <option value="AVERAGE">Average</option> -->
-      <!--   <option value="HARD">Hard</option> -->
-      <!-- </select> -->
-      <ul class="todo-list">
-        <li th:each="task : ${tasks}">
-          <input
-            class="checkbox-close-task"
-            th:hx-put="@{/updateTask/{id}(id=${task.id})}"
-            hx-trigger="click"
-            hx-target="#container"
-            type="checkbox"
-            th:id="|task-${task.id}|"
-            th:checked="${task.isComplete}"
-          />
-          <label
-            th:class="|close-task ${task.difficult}|"
-            th:for="|task-${task.id}|"
-          >
-            [[${task.title}]]
-            <!-- ([[${task.difficult}]]) -->
-          </label>
-          <button
-            class="delete-btn"
-            th:hx-delete="@{/deleteTask/{id}(id=${task.id})}"
-            hx-trigger="click"
-            hx-target="#container"
-          >
-            Delete
-          </button>
-        </li>
-      </ul>
-      <div class="page-container">
-        <input
-          th:hx-get="@{/previousPage}"
-          hx-trigger="click"
-          hx-target="#container"
-          class="page"
-          type="button"
-          value="<"
-        />
-        <input
-          th:hx-get="@{/}"
-          hx-trigger="click"
-          hx-target="#container"
-          class="page"
-          type="button"
-          th:value="${page}"
-        />
-        <input
-          th:hx-get="@{/nextPage}"
-          hx-trigger="click"
-          hx-target="#container"
-          class="page"
-          type="button"
-          value=">"
-        />
-        <!-- <input class="clean-all" type="button" name="clean" value="clean all"> -->
-      </div>
+
+      <select
+        id="type-difficult"
+        hx-trigger="change"
+        hx-target="#testaqui"
+        hx-get="/filter"
+        name="type-difficult"
+        hx-include="[id=type-difficult], [id=type-checked]"
+      >
+        <option selected value="ALL">All</option>
+        <option value="NONE">None</option>
+        <option value="EASY">Easy</option>
+        <option value="AVERAGE">Average</option>
+        <option value="HARD">Hard</option>
+      </select>
+
+      <select
+        id="type-checked"
+        hx-trigger="change"
+        hx-target="#testaqui"
+        hx-get="/filter"
+        name="type-checked"
+        hx-include="[id=type-difficult], [id=type-checked]"
+      >
+        <option selected value="ALL">All</option>
+        <option value="CHECKED">Checked</option>
+        <option value="UNCHECKED">UnChecked</option>
+      </select>
+      <input
+        type="button"
+        name="clean"
+        value="clean All"
+        hx-delete="/deleteAll"
+        hx-target="#container"
+        hx-trigger="click"
+      />
+      <ul th:replace="~{fragments/tasks :: tasks}"></ul>
     </div>
   </body>
 </html>
